@@ -1,3 +1,4 @@
+
 "use strict"
 
 var hh = 0;
@@ -7,14 +8,21 @@ var ss = 0;
 var tempo = 1000;//Quantos milésimos valem 1 segundo?
 var cron;
 
+let cont = 0;
+
 //Inicia o temporizador
 function start() {
-    cron = setInterval(() => { timer(); }, tempo);
+	cont++;
+    if(cont <= 1)
+		cron = setInterval(() => { timer(); }, tempo);
+	else
+		console.log('Pause ou pare primeiro');
 }
 
 //Para o temporizador mas não limpa as variáveis
 function pause() {
     clearInterval(cron);
+	cont = 0;
 }
 
 //Para o temporizador e limpa as variáveis
@@ -23,6 +31,8 @@ function stop() {
     hh = 0;
     mm = 0;
     ss = 0;
+	
+	cont = 0;
 
     document.getElementById('counter').innerText = '00:00:00';
 }
